@@ -15,14 +15,17 @@ export PATH := var:$(PATH):$(VENV_DIR)/bin
 
 PROJECT_NAME ?= daswag-sample-app-api
 STAGE_NAME ?= dev
-AWS_REGION ?= eu-west-1
 SWAGGER_FILE="specs/specs.yaml"
+
+export AWS_REGION ?= eu-west-1
+export TABLE_NAME ?= $(PROJECT_NAME)-$(STAGE_NAME)
 
 INIT_CFN_PARAMS := ProjectName=$(PROJECT_NAME) \
 		StageName=$(STAGE_NAME)
 
 CFN_PARAMS := ProjectName=$(PROJECT_NAME) \
-		StageName=$(STAGE_NAME)
+		StageName=$(STAGE_NAME) \
+		TableName=$(TABLE_NAME)
 
 INIT_TAGS_PARAMS := "daswag:project"="${PROJECT_NAME}-init" \
 		"daswag:owner"="daswag" \

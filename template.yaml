@@ -10,6 +10,9 @@ Parameters:
     Description: The name of the stage, e.g. "dev", "preprod", "prod"
     Default: dev
     Type: String
+  TableName:
+    Description: the name of DynamoDB Table to use
+    Type: String
 
 Globals:
   Function:
@@ -64,7 +67,7 @@ Resources:
   Table:
     Type: AWS::DynamoDB::Table
     Properties:
-      TableName: !Sub '${ProjectName}-${StageName}'
+      TableName: !Ref TableName
       AttributeDefinitions:
         - AttributeName: pk
           AttributeType: S
