@@ -5,7 +5,7 @@
     "baseNameKebabCase": "daswag-sample-app-api",
     "provider": "aws",
     "iac": "sam",
-    "version": "1.0.8",
+    "version": "1.0.0",
     "type": "Api",
     "language": "python37",
     "db": "dynamodb"
