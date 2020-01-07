@@ -5,9 +5,110 @@
     "baseNameKebabCase": "daswag-sample-app-api",
     "provider": "aws",
     "iac": "sam",
-    "version": "1.0.0",
+    "version": "1.0.9",
     "type": "Api",
     "language": "python37",
-    "db": "dynamodb"
+    "db": "dynamodb",
+    "entities": [
+      {
+        "name": "TodoItem",
+        "nameCamelCase": "TodoItem",
+        "nameKebabCase": "todo-item",
+        "nameSnakeCase": "todo_item",
+        "type": "object",
+        "attributes": [
+          {
+            "name": "id",
+            "attributeDataType": "string",
+            "required": true
+          },
+          {
+            "name": "updatedAt",
+            "attributeDataType": "string",
+            "required": true
+          },
+          {
+            "name": "title",
+            "attributeDataType": "string",
+            "required": true
+          },
+          {
+            "name": "content",
+            "attributeDataType": "string",
+            "required": false
+          }
+        ]
+      }
+    ],
+    "resources": [
+      {
+        "name": "Todos",
+        "nameCamelCase": "Todos",
+        "nameKebabCase": "todos",
+        "nameSnakeCase": "todos",
+        "path": "/todos",
+        "parameters": [],
+        "methods": [
+          {
+            "name": "GetAllTodos",
+            "nameCamelCase": "GetAllTodos",
+            "nameSnakeCase": "get_all_todos",
+            "type": "get",
+            "linkedEntityName": "TodoItem",
+            "summary": "Get all Todo items"
+          },
+          {
+            "name": "CreateTodo",
+            "nameCamelCase": "CreateTodo",
+            "nameSnakeCase": "create_todo",
+            "type": "post",
+            "linkedEntityName": "TodoItem",
+            "summary": "Create a new Todo item"
+          }
+        ]
+      },
+      {
+        "name": "Todos",
+        "nameCamelCase": "Todos",
+        "nameKebabCase": "todos",
+        "nameSnakeCase": "todos",
+        "path": "/todos/{idTodo}",
+        "parameters": [
+          {
+            "type": "path",
+            "name": "idTodo",
+            "description": "Idenfier of a Todo item",
+            "required": true,
+            "attributeDataType": "string"
+          }
+        ],
+        "methods": [
+          {
+            "name": "GetTodo",
+            "nameCamelCase": "GetTodo",
+            "nameSnakeCase": "get_todo",
+            "type": "get",
+            "linkedEntityName": "TodoItem",
+            "summary": "Get a todo item by it's identifier"
+          },
+          {
+            "name": "UpdateTodo",
+            "nameCamelCase": "UpdateTodo",
+            "nameSnakeCase": "update_todo",
+            "type": "put",
+            "linkedEntityName": "TodoItem",
+            "summary": "Update a Todo item"
+          },
+          {
+            "name": "DeleteTodo",
+            "nameCamelCase": "DeleteTodo",
+            "nameSnakeCase": "delete_todo",
+            "type": "delete",
+            "linkedEntityName": "TodoItem",
+            "summary": "Delete a Todo item"
+          }
+        ]
+      }
+    ]
   }
 }
