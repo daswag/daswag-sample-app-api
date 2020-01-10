@@ -1,6 +1,14 @@
 
 
-@endpoint(userAcl=[authority.ROLE_ADMIN])
-def get_all_accounts(event, context, session):
-  accounts = session.query(models.Account).order_by(models.Account.name)
-  return None, accounts_schema.dump(accounts).data
+from src.core.decorator.api_endpoint import api_endpoint
+from src.core.decorator.api_params import api_params
+from src.main import init
+
+# Initialize context
+init()
+
+
+@api_endpoint()
+@api_params(required=['idTodo'], optional=[])
+def update_todo(event, context, resource, idTodo):
+    return None, "Success"
